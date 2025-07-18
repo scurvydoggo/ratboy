@@ -8,9 +8,10 @@ use bevy::{
     }
 };
 use bevy_rapier2d::prelude::*;
+use crossterm::event::KeyCode;
 
 const TERMINAL_WIDTH: u32 = 80;
-const TERMINAL_HEIGHT: u32 = 20;
+const TERMINAL_HEIGHT: u32 = 10;
 
 #[derive(Component)]
 struct PixelBuffer {
@@ -21,10 +22,10 @@ fn main() {
     App::new()
         .add_plugins((
             MinimalPlugins,
-            bevy_input::InputPlugin,
-            bevy_asset::AssetPlugin::default(),
-            bevy_render::texture::ImagePlugin::default_nearest(), // Prevent blurry sprites
-            bevy_app::TerminalCtrlCHandlerPlugin,
+            bevy_stdin::StdinPlugin,
+            bevy::asset::AssetPlugin::default(),
+            bevy::input::InputPlugin,
+            bevy::render::texture::ImagePlugin::default_nearest(), // Prevent blurry sprites
         ))
         .add_plugins(RapierPhysicsPlugin::<NoUserData>::pixels_per_meter(100.0))
         .add_systems(Startup, (setup_camera, setup_scene))
@@ -69,7 +70,8 @@ fn setup_camera(
         Camera {
             target: RenderTarget::Image(image_handle.clone().into()),
             ..default()
-        }
+        },
+        Transform::from_xyz(0.0, 0.0, 0.0)
     ));
 
     // Track the image with an entity
@@ -89,7 +91,7 @@ fn setup_scene(
         .spawn(RigidBody::Dynamic)
         .insert(Collider::cuboid(13.0, 20.0))
         .insert(Restitution::coefficient(0.7))
-        .insert(Transform::from_xyz(0.0, 400.0, 0.0));
+        .insert(Transform::from_xyz(200.0, 800.0, 0.0));
 }
 
 fn print_terminal(
@@ -97,14 +99,16 @@ fn print_terminal(
     pixel_buffer: Single<&PixelBuffer>,
     images: Res<Assets<Image>>,
 ) {
-    if key.just_pressed(KeyCode::Space) {
+    if key.just_pressed(KeyCode::Char(' ')) {
         let image = images.get(pixel_buffer.handle.id()).expect("Image for pixel buffer not found");
-        for x in 0..TERMINAL_WIDTH {
-            for y in 0..TERMINAL_HEIGHT {
+        for y in 0..TERMINAL_HEIGHT {
+            for x in 0..TERMINAL_WIDTH {
                 let pixel = image.get_color_at(x, y).expect("Pixel out of bounds");
-                let rgba = pixel.to_srgba();
-                println!("Pixel at ({}, {}): [{},{},{}]", x, y, rgba.red, rgba.green, rgba.blue);
+                let rgb = pixel.to_srgba();
+                let set = rgb.red != 0.0 || rgb.green != 0.0 || rgb.blue != 0.0;
+                print!("{}", if set { "x" } else { " " });
             }
+            print!("<\r\n");
         }
     }
 }
