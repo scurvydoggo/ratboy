@@ -342,7 +342,7 @@ dependencies = [
  "bevy_transform",
  "bevy_utils",
  "blake3",
- "derive_more",
+ "derive_more 1.0.0",
  "downcast-rs",
  "either",
  "petgraph",
@@ -399,7 +399,7 @@ dependencies = [
  "bitflags 2.9.1",
  "blake3",
  "crossbeam-channel",
- "derive_more",
+ "derive_more 1.0.0",
  "disqualified",
  "downcast-rs",
  "either",
@@ -457,7 +457,7 @@ dependencies = [
  "bevy_math",
  "bevy_reflect",
  "bytemuck",
- "derive_more",
+ "derive_more 1.0.0",
  "encase",
  "serde",
  "thiserror 2.0.12",
@@ -539,7 +539,7 @@ dependencies = [
  "bitflags 2.9.1",
  "bumpalo",
  "concurrent-queue",
- "derive_more",
+ "derive_more 1.0.0",
  "disqualified",
  "fixedbitset",
  "indexmap",
@@ -702,7 +702,7 @@ dependencies = [
  "bevy_platform",
  "bevy_reflect",
  "bevy_utils",
- "derive_more",
+ "derive_more 1.0.0",
  "log",
  "smol_str",
  "thiserror 2.0.12",
@@ -805,7 +805,7 @@ checksum = "68553e0090fe9c3ba066c65629f636bd58e4ebd9444fdba097b91af6cd3e243f"
 dependencies = [
  "approx",
  "bevy_reflect",
- "derive_more",
+ "derive_more 1.0.0",
  "glam",
  "itertools 0.14.0",
  "libm",
@@ -874,7 +874,7 @@ dependencies = [
  "bevy_window",
  "bitflags 2.9.1",
  "bytemuck",
- "derive_more",
+ "derive_more 1.0.0",
  "fixedbitset",
  "nonmax",
  "offset-allocator",
@@ -958,7 +958,7 @@ dependencies = [
  "bevy_ptr",
  "bevy_reflect_derive",
  "bevy_utils",
- "derive_more",
+ "derive_more 1.0.0",
  "disqualified",
  "downcast-rs",
  "erased-serde",
@@ -1015,7 +1015,7 @@ dependencies = [
  "bitflags 2.9.1",
  "bytemuck",
  "codespan-reporting",
- "derive_more",
+ "derive_more 1.0.0",
  "downcast-rs",
  "encase",
  "fixedbitset",
@@ -1066,7 +1066,7 @@ dependencies = [
  "bevy_render",
  "bevy_transform",
  "bevy_utils",
- "derive_more",
+ "derive_more 1.0.0",
  "serde",
  "thiserror 2.0.12",
  "uuid",
@@ -1095,7 +1095,7 @@ dependencies = [
  "bevy_window",
  "bitflags 2.9.1",
  "bytemuck",
- "derive_more",
+ "derive_more 1.0.0",
  "fixedbitset",
  "nonmax",
  "radsort",
@@ -1131,6 +1131,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "bevy_stdin"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "86bde23f3fc18df4296bd38df02a538ee293ab488bfc01ed5276c0a6893f9181"
+dependencies = [
+ "bevy",
+ "crossbeam-channel",
+ "crossterm",
+]
+
+[[package]]
 name = "bevy_tasks"
 version = "0.16.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1144,7 +1155,7 @@ dependencies = [
  "cfg-if",
  "concurrent-queue",
  "crossbeam-queue",
- "derive_more",
+ "derive_more 1.0.0",
  "futures-channel",
  "futures-lite",
  "heapless",
@@ -1210,7 +1221,7 @@ dependencies = [
  "bevy_reflect",
  "bevy_tasks",
  "bevy_utils",
- "derive_more",
+ "derive_more 1.0.0",
  "serde",
  "thiserror 2.0.12",
 ]
@@ -1242,7 +1253,7 @@ dependencies = [
  "bevy_utils",
  "bevy_window",
  "bytemuck",
- "derive_more",
+ "derive_more 1.0.0",
  "nonmax",
  "smallvec",
  "taffy",
@@ -1620,6 +1631,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "convert_case"
+version = "0.7.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bb402b8d4c85569410425650ce3eddc7d698ed96d39a73f941b08fb63082f1e7"
+dependencies = [
+ "unicode-segmentation",
+]
+
+[[package]]
 name = "core-foundation"
 version = "0.9.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1807,6 +1827,33 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d0a5c400df2834b80a4c3327b3aad3a4c4cd4de0629063962b03235697506a28"
 
 [[package]]
+name = "crossterm"
+version = "0.29.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d8b9f2e4c67f833b660cdb0a3523065869fb35570177239812ed4c905aeff87b"
+dependencies = [
+ "bitflags 2.9.1",
+ "crossterm_winapi",
+ "derive_more 2.0.1",
+ "document-features",
+ "mio",
+ "parking_lot",
+ "rustix 1.0.8",
+ "signal-hook",
+ "signal-hook-mio",
+ "winapi",
+]
+
+[[package]]
+name = "crossterm_winapi"
+version = "0.9.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "acdd7c62a3665c7f6830a51635d9ac9b23ed385797f70a83bb8bafe9c572ab2b"
+dependencies = [
+ "winapi",
+]
+
+[[package]]
 name = "crunchy"
 version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1846,7 +1893,16 @@ version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4a9b99b9cbbe49445b21764dc0625032a89b145a2642e67603e1c936f5458d05"
 dependencies = [
- "derive_more-impl",
+ "derive_more-impl 1.0.0",
+]
+
+[[package]]
+name = "derive_more"
+version = "2.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "093242cf7570c207c83073cf82f79706fe7b8317e98620a47d5be7c3d8497678"
+dependencies = [
+ "derive_more-impl 2.0.1",
 ]
 
 [[package]]
@@ -1859,6 +1915,18 @@ dependencies = [
  "quote",
  "syn",
  "unicode-xid",
+]
+
+[[package]]
+name = "derive_more-impl"
+version = "2.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bda628edc44c4bb645fbe0f758797143e4e07926f7ebf4e9bdfbd3d2ce621df3"
+dependencies = [
+ "convert_case",
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]
@@ -2773,6 +2841,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "mio"
+version = "1.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "78bed444cc8a2160f01cbcf811ef18cac863ad68ae8ca62092e8db51d51c761c"
+dependencies = [
+ "libc",
+ "log",
+ "wasi 0.11.1+wasi-snapshot-preview1",
+ "windows-sys 0.59.0",
+]
+
+[[package]]
 name = "naga"
 version = "24.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3675,11 +3755,9 @@ name = "ratboy"
 version = "0.1.0"
 dependencies = [
  "bevy",
- "bevy_app",
- "bevy_asset",
- "bevy_input",
  "bevy_rapier2d",
- "bevy_render",
+ "bevy_stdin",
+ "crossterm",
 ]
 
 [[package]]
@@ -3970,6 +4048,36 @@ name = "shlex"
 version = "1.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0fda2ff0d084019ba4d7c6f371c95d8fd75ce3524c3cb8fb653a3023f6323e64"
+
+[[package]]
+name = "signal-hook"
+version = "0.3.18"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d881a16cf4426aa584979d30bd82cb33429027e42122b169753d6ef1085ed6e2"
+dependencies = [
+ "libc",
+ "signal-hook-registry",
+]
+
+[[package]]
+name = "signal-hook-mio"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "34db1a06d485c9142248b7a054f034b349b212551f3dfd19c94d45a754a217cd"
+dependencies = [
+ "libc",
+ "mio",
+ "signal-hook",
+]
+
+[[package]]
+name = "signal-hook-registry"
+version = "1.4.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9203b8055f63a2a00e2f593bb0510367fe707d7ff1e5c872de2f537b339e5410"
+dependencies = [
+ "libc",
+]
 
 [[package]]
 name = "simba"
