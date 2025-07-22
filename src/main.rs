@@ -30,6 +30,7 @@ fn main() {
         .add_plugins(RapierPhysicsPlugin::<NoUserData>::pixels_per_meter(100.0))
         .add_systems(Startup, (setup_camera, setup_scene))
         .add_systems(Update, print_terminal)
+        .insert_resource(ClearColor(Color::BLACK))
         .run();
 }
 
@@ -80,6 +81,7 @@ fn setup_camera(
 
 fn setup_scene(
     mut commands: Commands,
+    asset_server: Res<AssetServer>,
 ) {
     // Create the ground
     commands
@@ -88,7 +90,11 @@ fn setup_scene(
 
     // Create a falling block
     commands
-        .spawn(RigidBody::Dynamic)
+        .spawn(Sprite {
+            image: asset_server.load("slate-block.png"),
+            ..default()
+        })
+        .insert(RigidBody::Dynamic)
         .insert(Collider::cuboid(13.0, 20.0))
         .insert(Restitution::coefficient(0.7))
         .insert(Transform::from_xyz(200.0, 800.0, 0.0));
