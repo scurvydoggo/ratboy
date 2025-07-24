@@ -96,7 +96,7 @@ fn setup_scene(
         })
         .insert(RigidBody::Dynamic)
         .insert(Collider::cuboid(13.0, 20.0))
-        .insert(Restitution::coefficient(0.7))
+        .insert(Restitution::coefficient(0.2))
         .insert(Transform::from_xyz(200.0, 800.0, 0.0));
 }
 
