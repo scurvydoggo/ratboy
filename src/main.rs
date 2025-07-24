@@ -20,16 +20,10 @@ struct PixelBuffer {
 
 fn main() {
     App::new()
-        .add_plugins((
-            MinimalPlugins,
-            bevy_stdin::StdinPlugin,
-            bevy::asset::AssetPlugin::default(),
-            bevy::input::InputPlugin,
-            bevy::render::texture::ImagePlugin::default_nearest(), // Prevent blurry sprites
-        ))
+        .add_plugins(DefaultPlugins)
         .add_plugins(RapierPhysicsPlugin::<NoUserData>::pixels_per_meter(100.0))
         .add_systems(Startup, (setup_camera, setup_scene))
-        .add_systems(Update, print_terminal)
+        //.add_systems(Update, print_terminal)
         .insert_resource(ClearColor(Color::BLACK))
         .run();
 }
@@ -69,7 +63,7 @@ fn setup_camera(
     commands.spawn((
         Camera2d::default(),
         Camera {
-            target: RenderTarget::Image(image_handle.clone().into()),
+            //target: RenderTarget::Image(image_handle.clone().into()),
             ..default()
         },
         Transform::from_xyz(0.0, 0.0, 0.0)
